@@ -220,6 +220,22 @@ class ArgumentsOfCorrectTypeTest extends TestCase
         ]);
     }
 
+    /**
+     * @it Object into String
+     */
+    public function testObjectIntoString()
+    {
+        $this->expectFailsRule(new ArgumentsOfCorrectType(), '
+        {
+          complicatedArgs {
+            stringArgField(stringArg: 1)
+          }
+        }
+        ', [
+            $this->badValue('stringArg', 'Object', ['prop' => 'val'], 4, 39)
+        ]);
+    }
+
     // Invalid Int values
 
     /**
